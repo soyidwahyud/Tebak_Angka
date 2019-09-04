@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
 	private EditText InputAngka;
 	private TextView ViewAngka;
 	private PopupMenu popAngka;
-	private Random random = new Random();
+	private EditText GuessButton;
+	Random random = new Random();
 	int n;
-	Button reset;
+	Button guessbutton;
 
 
 	@Override
@@ -29,12 +30,13 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 		// TODO: bind layout di sini
 		InputAngka = findViewById(R.id.number_input);
-		reset = (Button)findViewById(R.id.reset_button);
+		guessbutton = (Button)findViewById(R.id.guess_button);
 	}
 
 	// TODO: generate angka random di sini
 	private void initRandomNumber() {
-		n = random.nextInt(100)+1;
+		n = ;
+		return;
 
 	}
 
@@ -43,23 +45,25 @@ public class MainActivity extends AppCompatActivity {
 		String input = InputAngka.getText().toString();
 		int number = Integer.parseInt(input);
 
-		if(number == n)
+		if(number > n)
 		{
-			Toast.makeText(this, "Angka Benar", Toast.LENGTH_SHORT).show();
-		}
-		else if(number > n)
-		{
-			Toast.makeText(this, "Angka Terlalu Besar", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Angka Terlalu besar", Toast.LENGTH_SHORT).show();
 		}
 		else if(number < n)
 		{
-			Toast.makeText(this, "Angka Terlalu Kecil", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Angka Terlalu kecil", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			guessbutton.setEnabled(false);
+			Toast.makeText(this, "Tebakan anda benar", Toast.LENGTH_SHORT).show();
 		}
 	}
 
 	public void handleReset(View view) {
 		// TODO: Reset tampilan
 		InputAngka.setText("");
+		guessbutton.setEnabled(true);
 		initRandomNumber();
 	}
 }
